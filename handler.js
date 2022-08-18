@@ -40,26 +40,117 @@ app.get("/users/:userId", async function (req, res) {
 });
 
 app.post("/cicd", async function (req, res) {
-  const { userId, name } = req.body;
+  const { userId, name,cicd_id } = req.body;
   // if (typeof userId !== "string") {
   //   res.status(400).json({ error: '"userId" must be a string' });
   // } else if (typeof name !== "string") {
   //   res.status(400).json({ error: '"name" must be a string' });
   // }
   console.log('TABLE TO SAVE ', "cicd");
-  const params = {
-      TableName: "cicd",
+  const id =   AWS.util.uuid.v4()
+
+  // const params = {
+  //     TableName: "frameworks",
+  //     Item: {
+  //       name: name,
+  //       cicd: cicd_id,
+  //       logo: "",
+  //       id:id
+  //     },
+
+  // };
+
+  var frameworks = [
+
+    {
+      "name":"react",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"front"
+  },
+  {
+      "name":"angular",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"front"
+  },
+  {
+      "name":"vue",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"front"
+  },
+  
+  {
+      "name":"laravel",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"front"
+  },
+  {
+      "name":"django",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"front"
+  },
+  {
+      "name":"nodejs",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"front"
+  },
+  
+  {
+      "name":"react natine",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"movile"
+  },
+  {
+      "name":"dd",
+      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "logo":"",
+      "id":"",
+      "type":"movile"
+  
+  }
+
+
+  ]
+
+  frameworks.map((framework)=>{
+    console.log('-----',framework);
+     todo = {
+      TableName: "frameworks",
       Item: {
-        name: "aws",
-        logo: "s3", name: name,
-        id: "123131232134523"
+        name: framework.name,
+        cicd_id: framework.cicd_id,
+        logo: "",
+        type:framework.type,
+        id:id
       },
 
-  };
+    };
+
+    console.log('todo',todo);
+     
+    await dynamoDbClient.put(todo).promise();
+
+  })
+
+ 
 
   try {
-    await dynamoDbClient.put(params).promise();
-    res.json({ userId, name });
+   //await dynamoDbClient.put(params).promise();
+   res.json({ "OK": "......." });
+    // res.json({ userId, name });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Could not create user" });

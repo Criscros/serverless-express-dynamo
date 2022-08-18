@@ -1,0 +1,86 @@
+[
+{
+    "name":"github",
+    "logo":"hithub"
+},
+{
+    "name":"gitlab",
+    "logo":"gitlab"
+},
+{
+    "name":"aws",
+    "logo":"aws"
+},
+{
+    "name":"bitbucket",
+    "logo":"bitbucket"
+},
+{
+    "name":"jenkins",
+    "logo":"jenkins"
+},
+{
+    "name":"git",
+    "logo":"hit"
+},
+
+{
+    "name":"react",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"front"
+},
+{
+    "name":"angular",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"front"
+},
+{
+    "name":"vue",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"front"
+},
+
+{
+    "name":"laravel",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"front"
+},
+{
+    "name":"django",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"front"
+},
+{
+    "name":"nodejs",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"front"
+},
+
+{
+    "name":"react natine",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"movile"
+},
+{
+    "name":"swift",
+    "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+    "logo":"",
+    "id":"",
+    "type":"movile"
+
+}
+]
