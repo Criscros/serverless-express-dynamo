@@ -64,21 +64,21 @@ app.post("/cicd", async function (req, res) {
 
     {
       "name":"react",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"angular",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"vue",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"front"
@@ -86,21 +86,21 @@ app.post("/cicd", async function (req, res) {
   
   {
       "name":"laravel",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"django",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"nodejs",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"front"
@@ -108,14 +108,14 @@ app.post("/cicd", async function (req, res) {
   
   {
       "name":"react natine",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"movile"
   },
   {
-      "name":"dd",
-      "cicd_id":"b6a65993-8fef-420c-b9c0-c6db6b1d4133",
+      "name":"swift",
+      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
       "logo":"",
       "id":"",
       "type":"movile"
@@ -125,26 +125,29 @@ app.post("/cicd", async function (req, res) {
 
   ]
 
-  frameworks.map((framework)=>{
-    console.log('-----',framework);
-     todo = {
-      TableName: "frameworks",
-      Item: {
-        name: framework.name,
-        cicd_id: framework.cicd_id,
-        logo: "",
-        type:framework.type,
-        id:id
-      },
+  const posts = await Promise.all(
+    frameworks.map(async (framework) => {
 
-    };
+      todo = {
+        TableName: "frameworks",
+        Item: {
+          name: framework.name,
+          cicd_id: framework.cicd_id,
+          logo: "",
+          type:framework.type,
+          id:AWS.util.uuid.v4()
+        },
+  
+      };
+      console.log('Xxxxxxxxxxxxxxxxxxxx',AWS.util.uuid.v4());
 
-    console.log('todo',todo);
-     
-    await dynamoDbClient.put(todo).promise();
+     return  await dynamoDbClient.put(todo).promise();
 
-  })
+    })
+  )
 
+
+    console.log('SAVING FRAMWWORKS.... ');
  
 
   try {
