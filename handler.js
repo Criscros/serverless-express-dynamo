@@ -39,7 +39,36 @@ app.get("/users/:userId", async function (req, res) {
   }
 });
 
-app.post("/cicd", async function (req, res) {
+app.post("/provider-cicd-create", async function (req, res) {
+  const { userId, name,cicd_id } = req.body;
+  // if (typeof userId !== "string") {
+  //   res.status(400).json({ error: '"userId" must be a string' });
+  // } else if (typeof name !== "string") {
+  //   res.status(400).json({ error: '"name" must be a string' });
+  // }
+  console.log('TABLE TO SAVE ', "providers_cicd");
+  const id =   AWS.util.uuid.v4()
+
+  const params = {
+      TableName: "providers_cicd",
+      Item: {
+        name: name,
+        logo: "",
+        id:id
+      },
+  };
+
+  try {
+   await dynamoDbClient.put(params).promise();
+   res.json({ "SAVE CICD": "......." });
+    // res.json({ userId, name });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Could not create user" });
+  }
+});
+
+app.post("/create-frameworks", async function (req, res) {
   const { userId, name,cicd_id } = req.body;
   // if (typeof userId !== "string") {
   //   res.status(400).json({ error: '"userId" must be a string' });
@@ -49,36 +78,25 @@ app.post("/cicd", async function (req, res) {
   console.log('TABLE TO SAVE ', "cicd");
   const id =   AWS.util.uuid.v4()
 
-  // const params = {
-  //     TableName: "frameworks",
-  //     Item: {
-  //       name: name,
-  //       cicd: cicd_id,
-  //       logo: "",
-  //       id:id
-  //     },
-
-  // };
-
   var frameworks = [
 
     {
       "name":"react",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"angular",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"vue",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"front"
@@ -86,36 +104,36 @@ app.post("/cicd", async function (req, res) {
   
   {
       "name":"laravel",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"django",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"front"
   },
   {
       "name":"nodejs",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
-      "type":"front"
+      "type":"back"
   },
   
   {
       "name":"react natine",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"movile"
   },
   {
       "name":"swift",
-      "cicd_id":"59e830c1-f6c8-4913-a77a-e6bbf357c82f",
+      "cicd_id":"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
       "logo":"",
       "id":"",
       "type":"movile"
@@ -160,7 +178,7 @@ app.post("/cicd", async function (req, res) {
   }
 });
 
-app.get("/cicd/:cicd_id", async function (req, res) {
+app.get("/frameworks/:cicd_id", async function (req, res) {
 
 
   console.log('cicd ID', req.params.cicd_id);
@@ -168,7 +186,8 @@ app.get("/cicd/:cicd_id", async function (req, res) {
   const params = {
     TableName: "frameworks",
     Key: {
-        cicd:req.params.cicd_id
+      id:"db6a21cd-a7a1-4648-9cdc-c7f8b8073f3b",
+
     },
   };
 
