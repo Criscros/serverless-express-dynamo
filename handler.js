@@ -154,7 +154,7 @@ app.post("/create-frameworks", async function (req, res) {
     res.status(500).json({ error: "Could not create user" });
   }
 });
-
+// WHY DOES NOT QUERY BY CICD KEY
 app.get("/frameworks/:cicd_id", async function (req, res) {
 
 
